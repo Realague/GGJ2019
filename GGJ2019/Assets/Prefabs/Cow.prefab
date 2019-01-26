@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3218215949857210928}
   - component: {fileID: 3218215949857210931}
   - component: {fileID: 3218215949857210930}
-  - component: {fileID: 5855862700563907498}
+  - component: {fileID: 5882016432248547777}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ab51b34e7302fa644b5a9546cf6d75a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  attack: 4
   hp: 5
 --- !u!61 &3218215949857210931
 BoxCollider2D:
@@ -144,7 +145,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &5855862700563907498
+--- !u!95 &5882016432248547777
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ Animator:
   m_GameObject: {fileID: 3218215949857210935}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 40e2893658c6c5141ac3cbcd68fb9237, type: 2}
+  m_Controller: {fileID: 9100000, guid: 17b73c49d36acbc4cbc80767eae86511, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

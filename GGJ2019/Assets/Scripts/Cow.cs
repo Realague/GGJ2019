@@ -49,12 +49,4 @@ public class Cow : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
-    {
-        --this.hp;
-        if (hp <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
 }
