@@ -14,7 +14,6 @@ public class Cow : MonoBehaviour
     void Start()
     {
         myAnimator = GetComponent<Animator>();
-        myAnimator.SetFloat("Speed", 1);
     }
 
     void Update()
