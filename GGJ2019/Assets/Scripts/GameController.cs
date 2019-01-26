@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
         if (nbCowLeft <= 0)
         {
             wave++;
-            SpawnWave();
+            StartCoroutine("SpawnWave");
         }
         if (cowshedHp <= 0)
         {
@@ -38,12 +38,13 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void SpawnWave()
+    IEnumerator SpawnWave()
     {
         nbCowLeft = wave * 5;
         for (int i = 0; i != wave * 5; i++)
         {
             Instantiate(cow, spawns[Random.Range(0, spawns.Count)].position, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(0.2f, 1.0f));
         }
     }
 
