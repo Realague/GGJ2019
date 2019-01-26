@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
         }
         if (cowshedHp <= 0)
         {
-            Destroy(cowshed);
+            DestroyImmediate(cowshed, true);
             //arret jeux
         }
     }

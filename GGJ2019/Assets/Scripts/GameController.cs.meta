@@ -3,7 +3,9 @@ guid: e59b97597482a5d48a87f8a8a790d18f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cowshed: {instanceID: 0}
+  - cow: {fileID: 3218215949857210935, guid: ef68a3f24e6e5614d8c9b91ae98b1098, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
