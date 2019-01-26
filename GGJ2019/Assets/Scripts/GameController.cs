@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class GameController : MonoBehaviour
     public static GameController instance = null;
     public List<Transform> spawns;
     public int playerDamage = 1;
+    public GameObject canvas;
+
+    void Awake()
+    {
+        Time.timeScale = 1;
+    }
 
     void Start()
     {
@@ -33,9 +40,14 @@ public class GameController : MonoBehaviour
         }
         if (cowshedHp <= 0)
         {
-            DestroyImmediate(cowshed, true);
-            //arret jeux
+            Time.timeScale = 0;
+            canvas.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
+
     }
 
     IEnumerator SpawnWave()

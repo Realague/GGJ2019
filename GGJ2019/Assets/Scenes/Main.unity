@@ -413,7 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave: 1
   cowshedHp: 1
-  cowshed: {fileID: 6564571695513420688, guid: 3981bdac5f46878448be6939ed76cd54, type: 3}
+  cowshed: {fileID: 1298387619}
   cow: {fileID: 3218215949857210935, guid: ef68a3f24e6e5614d8c9b91ae98b1098, type: 3}
   nbCowLeft: 0
   spawns:
@@ -467,6 +467,12 @@ Transform:
   m_Father: {fileID: 119936706}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1298387619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6564571695513420688, guid: 3981bdac5f46878448be6939ed76cd54,
+    type: 3}
+  m_PrefabInstance: {fileID: 842660094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1428201502
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,32 +10,46 @@ public class Cow : MonoBehaviour
     public int attack = 4;
     public int hp = 1;
     private bool dead = false;
+    public AudioClip deathSound;
+    public AudioClip hitSound;
+    public AudioSource source;
+    private bool callDestroy = false;
+    public int deathRoatationSpeed = 20;
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
         myAnimator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (dead)
+        if (dead && !callDestroy)
         {
-            GameController.instance.nbCowLeft--;
-            Destroy(gameObject);
+            myAnimator.SetBool("Death", true);
+            StartCoroutine("Death");
+            callDestroy = true;
         }
     }
 
     void FixedUpdate()
     {
-        transform.Translate(new Vector2(1, 0) * Time.deltaTime * speed);
+        if (!dead)
+        {
+            transform.Translate(new Vector2(1, 0) * Time.deltaTime * speed);
+        }
+        else if (callDestroy)
+        {
+            transform.Rotate(new Vector3(0, 0, deathRoatationSpeed * Time.deltaTime));
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Cowshed")
+        if (other.tag == "Cowshed" && !dead)
         {
             GameController.instance.cowshedHp -= attack;
-            dead = true;
+            Destroy(gameObject);
         }
     }
 
@@ -45,7 +59,18 @@ public class Cow : MonoBehaviour
         if (hp <= 0)
         {
             dead = true;
+            return;
         }
+        source.clip = hitSound;
+        source.Play();
     }
 
+    IEnumerator Death()
+    {
+        source.clip = deathSound;
+        source.Play();
+        GameController.instance.nbCowLeft--;
+        yield return new WaitForSeconds(1.5F);
+        Destroy(gameObject);
+    }
 }
