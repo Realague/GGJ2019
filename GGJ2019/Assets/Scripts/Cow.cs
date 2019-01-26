@@ -7,7 +7,9 @@ public class Cow : MonoBehaviour
     private Animator myAnimator;
     [SerializeField]
     private float speed = 4f;
+    public int attack = 4;
     public int hp = 1;
+    private bool dead = false;
 
     void Start()
     {
@@ -17,6 +19,11 @@ public class Cow : MonoBehaviour
 
     void Update()
     {
+        if (dead)
+        {
+            GameController.instance.nbCowLeft--;
+            Destroy(gameObject);
+        }
     }
 
     void FixedUpdate()
@@ -28,7 +35,17 @@ public class Cow : MonoBehaviour
     {
         if (other.tag == "Cowshed")
         {
-            Destroy(gameObject);
+            GameController.instance.cowshedHp -= attack;
+            dead = true;
+        }
+    }
+
+    void OnMouseDown()
+    {
+        hp -= GameController.instance.playerDamage;
+        if (hp <= 0)
+        {
+            dead = true;
         }
     }
 }
