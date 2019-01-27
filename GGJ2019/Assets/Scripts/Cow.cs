@@ -9,7 +9,7 @@ public class Cow : MonoBehaviour
     public AudioClip hitSound;
     public AudioSource source;
     public int hp;
-
+    Rigidbody2D myRigidBody;
     public float speed = 4f;
     public int attack = 4;
     public int maxHp = 1;
@@ -22,6 +22,7 @@ public class Cow : MonoBehaviour
         hp = maxHp;
         source = GetComponent<AudioSource>();
         myAnimator = GetComponent<Animator>();
+        myRigidBody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -36,14 +37,7 @@ public class Cow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!dead)
-        {
-            transform.Translate(new Vector2(1, 0) * Time.deltaTime * speed);
-        }
-        else if (callDestroy)
-        {
-            transform.Rotate(new Vector3(0, 0, deathRoatationSpeed * Time.deltaTime));
-        }
+        transform.Translate(new Vector2(1, 0) * Time.deltaTime * speed);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -73,6 +67,8 @@ public class Cow : MonoBehaviour
         source.clip = deathSound;
         source.Play();
         GameController.instance.nbCowLeft--;
+        myRigidBody.bodyType = RigidbodyType2D.Dynamic;
+        myRigidBody.gravityScale = 1f;
         yield return new WaitForSeconds(1.5F);
         Destroy(gameObject);
     }

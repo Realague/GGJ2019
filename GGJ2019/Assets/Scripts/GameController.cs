@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
     {
         GameObject cowObject = null;
         nbCowLeft = 3 + wave * cowPerWave;
-        for (int i = 0; i != nbCowLeft; i++)
+        for (int i = 0; i != 3 + wave * cowPerWave; i++)
         {
             cowObject = Instantiate(cow, spawns[UnityEngine.Random.Range(0, spawns.Count)].position, Quaternion.identity);
             cowObject.GetComponent<Cow>().maxHp += wave / 6;
