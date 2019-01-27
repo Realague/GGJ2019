@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     public int nbCowLeft = 0;
     public List<Transform> spawns;
     public int playerDamage = 1;
-    public GameObject text;
+    public GameObject canvas;
     public int cowPerWave = 2;
     public int baseCowNumber = 3;
 

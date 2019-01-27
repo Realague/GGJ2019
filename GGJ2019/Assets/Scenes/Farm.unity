@@ -3077,6 +3077,11 @@ PrefabInstance:
       propertyPath: spawns.Array.data[4]
       value: 
       objectReference: {fileID: 1003569282}
+    - target: {fileID: 8916704708713599640, guid: 56ba5bbadb062394e918f0432a0595a3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 719234600}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ba5bbadb062394e918f0432a0595a3, type: 3}
 --- !u!1 &2042696000
