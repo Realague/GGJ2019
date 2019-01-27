@@ -18,12 +18,12 @@ public class GameController : MonoBehaviour
     public int shotgunSpreadLevel = 1;
     public int shotgunDamageLevel = 1;
     public int money = 0;
-    public int cowshedMaxHp = 10;
+    public int cowshedMaxHp = 20;
     public int nbCowLeft = 0;
     public List<Transform> spawns;
     public int playerDamage = 1;
     public GameObject text;
-    public int cowPerWave = 3;
+    public int cowPerWave = 4;
     public int baseCowNumber = 3;
     public GameObject cusor;
 
@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour
         {
             cowObject = Instantiate(cow, spawns[UnityEngine.Random.Range(0, spawns.Count)].position, Quaternion.identity);
             cowObject.GetComponent<Cow>().maxHp += wave / 4;
-            cowObject.GetComponent<Cow>().speed += wave * 0.1f;
+            cowObject.GetComponent<Cow>().speed += wave * 0.2f;
             yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 1.0f));
         }
     }
