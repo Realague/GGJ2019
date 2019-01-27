@@ -3288,5 +3288,15 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 719234600}
+    - target: {fileID: 8916704708713599640, guid: 56ba5bbadb062394e918f0432a0595a3,
+        type: 3}
+      propertyPath: cowshedMaxHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916704708713599640, guid: 56ba5bbadb062394e918f0432a0595a3,
+        type: 3}
+      propertyPath: wave
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ba5bbadb062394e918f0432a0595a3, type: 3}

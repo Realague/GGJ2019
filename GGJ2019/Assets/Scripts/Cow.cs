@@ -5,19 +5,21 @@ using UnityEngine;
 public class Cow : MonoBehaviour
 {
     private Animator myAnimator;
-    [SerializeField]
-    private float speed = 4f;
-    public int attack = 4;
-    public int hp = 1;
-    private bool dead = false;
     public AudioClip deathSound;
     public AudioClip hitSound;
     public AudioSource source;
+    public int hp;
+
+    public float speed = 4f;
+    public int attack = 4;
+    public int maxHp = 1;
+    private bool dead = false;
     private bool callDestroy = false;
     public int deathRoatationSpeed = 20;
 
     void Start()
     {
+        hp = maxHp;
         source = GetComponent<AudioSource>();
         myAnimator = GetComponent<Animator>();
     }
@@ -49,6 +51,7 @@ public class Cow : MonoBehaviour
         if (other.tag == "Cowshed" && !dead)
         {
             GameController.instance.cowshedHp -= attack;
+            GameController.instance.nbCowLeft--;
             Destroy(gameObject);
         }
     }

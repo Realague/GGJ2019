@@ -1,19 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameController : MonoBehaviour
 {
-    public int wave = 1;
-    public int cowshedHp = 1;
+    public static GameController instance = null;
+    public int wave = 0;
+    [HideInInspector]
+    public int cowshedHp;
     public GameObject cowshed;
     public GameObject cow;
+
+    public int cowshedMaxHp = 10;
     public int nbCowLeft = 0;
-    public static GameController instance = null;
     public List<Transform> spawns;
     public int playerDamage = 1;
     public GameObject canvas;
+    public int cowPerWave = 2;
+    public int baseCowNumber = 3;
 
     void Awake()
     {
@@ -22,6 +28,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        cowshedHp = cowshedMaxHp;
         if (instance == null)
         {
             instance = this;
@@ -52,11 +59,14 @@ public class GameController : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        nbCowLeft = wave * 5;
-        for (int i = 0; i != wave * 5; i++)
+        GameObject cowObject = null;
+        nbCowLeft = 3 + wave * cowPerWave;
+        for (int i = 0; i != nbCowLeft; i++)
         {
-            Instantiate(cow, spawns[Random.Range(0, spawns.Count)].position, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(0.2f, 1.0f));
+            cowObject = Instantiate(cow, spawns[UnityEngine.Random.Range(0, spawns.Count)].position, Quaternion.identity);
+            cowObject.GetComponent<Cow>().maxHp += wave / 6;
+            cowObject.GetComponent<Cow>().attack += wave / 6;
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 1.0f));
         }
     }
 
