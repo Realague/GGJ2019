@@ -6,6 +6,9 @@ using System;
 
 public class Cow : MonoBehaviour
 {
+    private Color red = new Color(1, 0, 0, 1);
+    private Color black = new Color(0, 0, 0, 1);
+    private Color baseColor = new Color(1, 1, 1, 1);
     private Animator myAnimator;
     public AudioClip deathSound;
     public AudioClip hitSound;
@@ -18,9 +21,11 @@ public class Cow : MonoBehaviour
     private bool dead = false;
     private bool callDestroy = false;
     public int deathRoatationSpeed = 20;
+    private SpriteRenderer objectSprite;
 
     void Start()
     {
+        objectSprite = GetComponent<SpriteRenderer>();
         hp = maxHp;
         source = GetComponent<AudioSource>();
         myAnimator = GetComponent<Animator>();
@@ -40,6 +45,10 @@ public class Cow : MonoBehaviour
     void FixedUpdate()
     {
         transform.Translate(new Vector2(1, 0) * Time.deltaTime * speed);
+        if (callDestroy)
+        {
+            transform.Rotate(new Vector3(0, 0, deathRoatationSpeed * Time.deltaTime));
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -61,12 +70,12 @@ public class Cow : MonoBehaviour
             dead = true;
             return;
         }
-        source.clip = hitSound;
-        source.Play();
+        StartCoroutine("Damaged");
     }
 
     IEnumerator Death()
     {
+        objectSprite.color = black;
         source.clip = deathSound;
         source.Play();
         GameController.instance.nbCowLeft--;
@@ -74,5 +83,17 @@ public class Cow : MonoBehaviour
         myRigidBody.gravityScale = 1f;
         yield return new WaitForSeconds(1.5F);
         Destroy(gameObject);
+    }
+
+    IEnumerator Damaged()
+    {
+        source.clip = hitSound;
+        source.Play();
+        objectSprite.color = red;
+        yield return new WaitForSeconds(0.5F);
+        if (!dead)
+        {
+            objectSprite.color = baseColor;
+        }
     }
 }

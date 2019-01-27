@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
     public GameObject text;
     public int cowPerWave = 2;
     public int baseCowNumber = 3;
+    public GameObject cusor;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        UnityEngine.Cursor.visible = false;
         cowshedHp = cowshedMaxHp;
         if (instance == null)
         {
