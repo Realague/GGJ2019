@@ -7,6 +7,7 @@ using System;
 public class GameController : MonoBehaviour
 {
     public static GameController instance = null;
+    [HideInInspector]
     public int wave = 0;
     [HideInInspector]
     public int cowshedHp;
@@ -17,7 +18,7 @@ public class GameController : MonoBehaviour
     public int nbCowLeft = 0;
     public List<Transform> spawns;
     public int playerDamage = 1;
-    public GameObject canvas;
+    public GameObject text;
     public int cowPerWave = 2;
     public int baseCowNumber = 3;
 
@@ -65,7 +66,7 @@ public class GameController : MonoBehaviour
         {
             cowObject = Instantiate(cow, spawns[UnityEngine.Random.Range(0, spawns.Count)].position, Quaternion.identity);
             cowObject.GetComponent<Cow>().maxHp += wave / 6;
-            cowObject.GetComponent<Cow>().attack += wave / 6;
+            cowObject.GetComponent<Cow>().speed = wave * 1.1f;
             yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 1.0f));
         }
     }

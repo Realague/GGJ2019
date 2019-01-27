@@ -8,10 +8,10 @@ public class Cow : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip hitSound;
     public AudioSource source;
+    [HideInInspector]
     public int hp;
     Rigidbody2D myRigidBody;
     public float speed = 4f;
-    public int attack = 4;
     public int maxHp = 1;
     private bool dead = false;
     private bool callDestroy = false;
@@ -44,7 +44,7 @@ public class Cow : MonoBehaviour
     {
         if (other.tag == "Cowshed" && !dead)
         {
-            GameController.instance.cowshedHp -= attack;
+            GameController.instance.cowshedHp -= hp;
             GameController.instance.nbCowLeft--;
             Destroy(gameObject);
         }
