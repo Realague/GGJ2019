@@ -132,8 +132,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: d3e1b34dbb510044fb32cb36e51f1355, type: 3}
   source: {fileID: 0}
   hp: 1
-  speed: 4
-  attack: 4
+  speed: 3.2
   maxHp: 1
   deathRoatationSpeed: 127
 --- !u!61 &3218215949857210931

@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
         {
             cowObject = Instantiate(cow, spawns[UnityEngine.Random.Range(0, spawns.Count)].position, Quaternion.identity);
             cowObject.GetComponent<Cow>().maxHp += wave / 6;
-            cowObject.GetComponent<Cow>().speed = wave * 1.1f;
+            cowObject.GetComponent<Cow>().speed += wave * 0.1f;
             yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 1.0f));
         }
     }
