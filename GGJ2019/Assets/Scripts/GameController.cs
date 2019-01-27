@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     public int nbCowLeft = 0;
     public List<Transform> spawns;
     public int playerDamage = 1;
-    public GameObject canvas;
+    public GameObject text;
     public int cowPerWave = 2;
     public int baseCowNumber = 3;
 
@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
         if (cowshedHp <= 0)
         {
             Time.timeScale = 0;
-            canvas.SetActive(true);
+            text.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
