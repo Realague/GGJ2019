@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 7666694150275429676}
   m_Layer: 0
   m_Name: Cow
-  m_TagString: Untagged
+  m_TagString: Cow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,9 +131,8 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 122e6e8b37a5ede4897e3fe42c9e8140, type: 3}
   hitSound: {fileID: 8300000, guid: d3e1b34dbb510044fb32cb36e51f1355, type: 3}
   source: {fileID: 0}
-  hp: 1
   speed: 3.2
-  maxHp: 1
+  maxHp: 2
   deathRoatationSpeed: 127
 --- !u!61 &3218215949857210931
 BoxCollider2D:

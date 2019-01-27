@@ -90,7 +90,7 @@ public class Cow : MonoBehaviour
         source.clip = hitSound;
         source.Play();
         objectSprite.color = red;
-        yield return new WaitForSeconds(0.5F);
+        yield return new WaitForSeconds(0.25F);
         if (!dead)
         {
             objectSprite.color = baseColor;
