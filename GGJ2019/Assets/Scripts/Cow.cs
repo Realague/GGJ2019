@@ -18,6 +18,7 @@ public class Cow : MonoBehaviour
     Rigidbody2D myRigidBody;
     public float speed = 4f;
     public int maxHp = 1;
+    BoxCollider2D myCollider;
     private bool dead = false;
     private bool callDestroy = false;
     public int deathRoatationSpeed = 20;
@@ -29,6 +30,7 @@ public class Cow : MonoBehaviour
         hp = maxHp;
         source = GetComponent<AudioSource>();
         myAnimator = GetComponent<Animator>();
+        myCollider = GetComponent<BoxCollider2D>();
         myRigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -55,7 +57,7 @@ public class Cow : MonoBehaviour
     {
         if (other.tag == "Cowshed" && !dead)
         {
-            GameController.instance.cowshedHp -= hp;
+            GameController.instance.cowshedHp -= 2;
             GameController.instance.nbCowLeft--;
             Destroy(gameObject);
         }
@@ -66,13 +68,16 @@ public class Cow : MonoBehaviour
         if (other.tag == "Player" && Input.GetMouseButtonDown(0))
         {
             hp -= GameController.instance.playerDamage;
-            GameController.instance.money += 1 + GameController.instance.wave / 6;
-            if (hp <= 0)
+            if (hp <= 0 && !dead)
             {
+                GameController.instance.money += 2 + GameController.instance.wave / 4;
                 dead = true;
                 return;
             }
-            StartCoroutine("Damaged");
+            if (!dead)
+            {
+                StartCoroutine("Damaged");
+            }
         }
     }
 
@@ -94,6 +99,7 @@ public class Cow : MonoBehaviour
         source.clip = deathSound;
         source.Play();
         GameController.instance.nbCowLeft--;
+        myCollider.enabled = false;
         myRigidBody.bodyType = RigidbodyType2D.Dynamic;
         myRigidBody.gravityScale = 1f;
         yield return new WaitForSeconds(1.5F);

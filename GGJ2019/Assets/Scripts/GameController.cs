@@ -13,14 +13,17 @@ public class GameController : MonoBehaviour
     public int cowshedHp;
     public GameObject cowshed;
     public GameObject cow;
+    public GameObject shop;
 
+    public int shotgunSpreadLevel = 1;
+    public int shotgunDamageLevel = 1;
     public int money = 0;
     public int cowshedMaxHp = 10;
     public int nbCowLeft = 0;
     public List<Transform> spawns;
     public int playerDamage = 1;
     public GameObject text;
-    public int cowPerWave = 2;
+    public int cowPerWave = 3;
     public int baseCowNumber = 3;
     public GameObject cusor;
 
@@ -40,14 +43,14 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        startNewWave();
     }
 
     void Update()
     {
         if (nbCowLeft <= 0)
         {
-            wave++;
-            StartCoroutine("SpawnWave");
+            showShop();
         }
         if (cowshedHp <= 0)
         {
@@ -61,14 +64,26 @@ public class GameController : MonoBehaviour
 
     }
 
-    IEnumerator SpawnWave()
+    public void showShop()
+    {
+        shop.SetActive(true);
+    }
+
+    public void startNewWave()
+    {
+        shop.SetActive(false);
+        wave++;
+        StartCoroutine("SpawnWave");
+    }
+
+    public IEnumerator SpawnWave()
     {
         GameObject cowObject = null;
         nbCowLeft = 3 + wave * cowPerWave;
         for (int i = 0; i != 3 + wave * cowPerWave; i++)
         {
             cowObject = Instantiate(cow, spawns[UnityEngine.Random.Range(0, spawns.Count)].position, Quaternion.identity);
-            cowObject.GetComponent<Cow>().maxHp += wave / 6;
+            cowObject.GetComponent<Cow>().maxHp += wave / 4;
             cowObject.GetComponent<Cow>().speed += wave * 0.1f;
             yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 1.0f));
         }
