@@ -1,6 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
 
 public class Cow : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class Cow : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip hitSound;
     public AudioSource source;
-    [HideInInspector]
+    [NonSerialized]
     public int hp;
     Rigidbody2D myRigidBody;
     public float speed = 4f;
@@ -53,6 +55,7 @@ public class Cow : MonoBehaviour
     void OnMouseDown()
     {
         hp -= GameController.instance.playerDamage;
+        GameController.instance.money += 1 + GameController.instance.wave / 6;
         if (hp <= 0)
         {
             dead = true;

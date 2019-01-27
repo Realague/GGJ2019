@@ -7,13 +7,14 @@ using System;
 public class GameController : MonoBehaviour
 {
     public static GameController instance = null;
-    [HideInInspector]
+    [NonSerialized]
     public int wave = 0;
-    [HideInInspector]
+    [NonSerialized]
     public int cowshedHp;
     public GameObject cowshed;
     public GameObject cow;
 
+    public int money = 0;
     public int cowshedMaxHp = 10;
     public int nbCowLeft = 0;
     public List<Transform> spawns;
