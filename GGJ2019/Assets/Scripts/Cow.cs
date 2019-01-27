@@ -61,7 +61,22 @@ public class Cow : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Player" && Input.GetMouseButtonDown(0))
+        {
+            hp -= GameController.instance.playerDamage;
+            GameController.instance.money += 1 + GameController.instance.wave / 6;
+            if (hp <= 0)
+            {
+                dead = true;
+                return;
+            }
+            StartCoroutine("Damaged");
+        }
+    }
+
+    /*void OnMouseDown()
     {
         hp -= GameController.instance.playerDamage;
         GameController.instance.money += 1 + GameController.instance.wave / 6;
@@ -71,7 +86,7 @@ public class Cow : MonoBehaviour
             return;
         }
         StartCoroutine("Damaged");
-    }
+    }*/
 
     IEnumerator Death()
     {
